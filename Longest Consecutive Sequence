@@ -1,0 +1,31 @@
+//TC = O(3N)
+//Sc = O(N)
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        set<int> hash;
+        for(int i : nums){
+            hash.insert(i);
+        }
+        
+        int count = 0;
+        
+        for(int i : nums){
+            if(!(hash.count(i - 1))){
+                int ele = i;
+                int currCount = 1;
+                
+                while(hash.count(ele + 1)){
+                    ele += 1;
+                    currCount += 1;
+                }
+                
+                count = max(count, currCount);
+            }
+        }
+        
+        return count;
+        
+    }
+};
